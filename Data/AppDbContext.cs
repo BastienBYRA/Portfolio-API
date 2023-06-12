@@ -10,8 +10,11 @@ namespace Portfolio_API.Data
 
         }
 
-        public DbSet<Experiences> Experiences { get; set; }
-        public DbSet<Missions> Missions { get; set; }
-        public DbSet<Types_Experiences> Types_Experiences { get; set; }
+        public DbSet<Experience> Experiences { get; set; }
+        public DbSet<Mission> Missions { get; set; }
+        public DbSet<Type_Experience> Types_Experiences { get; set; }
+        public DbSet<Period> Periods { get; set; }
+        public DbSet<Langage> Langages { get; set; }
+        public DbSet<Project> Projects { get; set; }
     }
 }

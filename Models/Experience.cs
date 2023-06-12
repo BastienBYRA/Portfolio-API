@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portfolio_API.Models
 {
-    public class Experiences
+    public class Experience
     {
         [Key]
         public int Id { get; set; }
@@ -16,8 +16,8 @@ namespace Portfolio_API.Models
 
         public string Img_Location { get; set; } = null!;
 
-        public Types_Experiences Type_Experience { get; set; } = null!;
+        public Type_Experience Type_Experience { get; set; } = null!;
 
-        public List<Missions> Missions { get; set; } = null!;
+        public List<Mission> Missions { get; set; } = null!;
     }
 }

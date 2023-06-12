@@ -2,7 +2,7 @@
 
 namespace Portfolio_API.Models
 {
-    public class Types_Experiences
+    public class Type_Experience
     {
         [Key]
         public int Id { get; set; }
