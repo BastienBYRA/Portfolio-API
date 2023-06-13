@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Portfolio_API.Data;
+using Portfolio_API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(
     }
 );
 
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
