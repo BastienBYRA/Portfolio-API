@@ -12,7 +12,7 @@ namespace Portfolio_API.Services
         /// Récupère tout les éléments de la base de données pour une classe donnée.
         /// </summary>
         /// <returns>Retourne une List de la classe donnée.</returns>
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAll(int? page, int? numberPerPage);
 
         /// <summary>
         /// Récupère un élément de la base de données pour une classe donnée.

@@ -12,7 +12,7 @@ namespace Portfolio_API.Services
         protected readonly AppDbContext _context;
         private DbSet<T> Table = null;
 
-        public GenericRepository(ApplicationDbContext context)
+        public GenericRepository(AppDbContext context)
         {
             _context = context;
             Table = _context.Set<T>();
@@ -38,9 +38,15 @@ namespace Portfolio_API.Services
             await _context.AddRangeAsync(entities);
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll(int? page, int? numberPerPage)
         {
-            return Table.ToList();
+            if (page == null)
+                page = 0;
+
+            if (numberPerPage == null)
+                numberPerPage = 5;
+
+            return Table.ToList().Skip((page.Value - 1) * numberPerPage.Value).Take(page.Value);
         }
 
         public virtual T GetById(object id)

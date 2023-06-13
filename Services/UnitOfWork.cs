@@ -10,7 +10,7 @@ namespace Portfolio_API.Services
         /**public IResultRepository ResultRepository { get; private set; }**/
         #endregion
 
-        public UnitOfWork(ApplicationDbContext context)
+        public UnitOfWork(AppDbContext context)
         {
             _context = context;
             /**ResultRepository = new ResultRepository.ResultRepository(_context);**/
