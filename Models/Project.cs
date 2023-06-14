@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portfolio_API.Models
 {
@@ -15,9 +16,9 @@ namespace Portfolio_API.Models
 
         public string LongDesc { get; set; } = null!;
 
-        public List<Langage> Langages { get; set; } = new List<Langage>();
+        public virtual ICollection<Langage> Langages { get; set; }
 
-        public List<Mission> Missions { get; set; } = new List<Mission>();
+        public virtual ICollection<Mission> Missions { get; set; }
 
         public string Job { get; set; } = null!;
     }

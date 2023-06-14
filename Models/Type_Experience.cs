@@ -9,5 +9,7 @@ namespace Portfolio_API.Models
 
         [Required]
         public string Libelle { get; set; }
+
+        public virtual ICollection<Experience> Experiences { get; set; }
     }
 }

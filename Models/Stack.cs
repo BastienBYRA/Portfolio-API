@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portfolio_API.Models
 {
@@ -7,7 +8,8 @@ namespace Portfolio_API.Models
         [Key]
         public int Id { get; set; }
         public string Category { get; set; } = null!;
-        public List<Langage> Langages { get; set; } = null!;
+
+        public virtual ICollection<Langage> Langages { get; set; }
 
     }
 }

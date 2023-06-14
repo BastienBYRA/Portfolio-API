@@ -9,5 +9,9 @@ namespace Portfolio_API.Models
 
         [Required]
         public string Title { get; set; }
+
+        public virtual ICollection<Project> Projects { get; set; }
+
+        public virtual ICollection<Experience> Experience { get; set; }
     }
 }

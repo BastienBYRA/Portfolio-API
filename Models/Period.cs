@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
 
 namespace Portfolio_API.Models
@@ -13,6 +14,6 @@ namespace Portfolio_API.Models
 
         public int YearsEnd { get; set; }
 
-        public List<Experience> Experiences { get; set; } = new List<Experience>();
+        public virtual ICollection<Experience> Experiences { get; set; }
     }
 }

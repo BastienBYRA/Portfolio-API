@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Portfolio_API.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Portfolio_API.Data
 {
@@ -16,5 +17,16 @@ namespace Portfolio_API.Data
         public DbSet<Period> Periods { get; set; }
         public DbSet<Langage> Langages { get; set; }
         public DbSet<Project> Projects { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+/*            modelBuilder.Entity<Langage>()
+            .HasOne<Project>(sc => sc.Pro)
+            .WithMany(s => s.StudentCourses)
+            .HasForeignKey(sc => sc.SId);*/
+        }
     }
+
+
 }

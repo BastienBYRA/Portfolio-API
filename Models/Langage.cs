@@ -9,5 +9,6 @@ namespace Portfolio_API.Models
         public string Title { get; set; } = null!;
         public string ImgLink { get; set; } = null!;
         public bool Background { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }

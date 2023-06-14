@@ -16,8 +16,10 @@ namespace Portfolio_API.Models
 
         public string Img_Location { get; set; } = null!;
 
-        public Type_Experience Type_Experience { get; set; } = null!;
+        public virtual Type_Experience Type_Experience { get; set; }
 
-        public List<Mission> Missions { get; set; } = null!;
+        public virtual ICollection<Mission> Missions { get; set; }
+
+        public virtual Period Period { get; set; }
     }
 }
