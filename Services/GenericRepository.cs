@@ -40,13 +40,10 @@ namespace Portfolio_API.Services
 
         public virtual IEnumerable<T> GetAll(int? page, int? numberPerPage)
         {
-            if (page == null)
-                page = 0;
+            int numberPage = (page ?? 1);
+            int numberShowPerPage = (numberPerPage ?? 5);
 
-            if (numberPerPage == null)
-                numberPerPage = 5;
-
-            return Table.ToList().Skip((page.Value - 1) * numberPerPage.Value).Take(page.Value);
+            return Table.ToList().Skip((numberPage - 1) * numberShowPerPage).Take(numberShowPerPage);
         }
 
         public virtual T GetById(object id)

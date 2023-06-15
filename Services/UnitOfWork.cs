@@ -1,4 +1,6 @@
 ﻿using Portfolio_API.Data;
+using Portfolio_API.Services.Experience;
+using Portfolio_API.Services.Langage;
 
 namespace Portfolio_API.Services
 {
@@ -7,13 +9,15 @@ namespace Portfolio_API.Services
         private readonly AppDbContext _context;
 
         #region Liste des Repositories
-        /**public IResultRepository ResultRepository { get; private set; }**/
+        public ExperienceRepository ExperienceRepository { get; set; }
+        public LangageRepository LangageRepository { get; set; }
         #endregion
 
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
-            /**ResultRepository = new ResultRepository.ResultRepository(_context);**/
+            ExperienceRepository = new ExperienceRepository(context);
+            LangageRepository = new LangageRepository(context);
         }
 
         public int Save()
@@ -28,6 +32,7 @@ namespace Portfolio_API.Services
 
 
         private bool disposed = false;
+
         protected virtual void Dispose(bool disposing)
         {
             if (!this.disposed)
