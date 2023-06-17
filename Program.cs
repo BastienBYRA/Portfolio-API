@@ -1,6 +1,7 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Portfolio_API.Data;
 using Portfolio_API.Services;
+using Portfolio_API.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 

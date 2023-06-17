@@ -16,7 +16,7 @@ namespace Portfolio_API.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet]
+/*        [HttpGet]
         public IActionResult GetExperiences()
         {
             var res = _unitOfWork.ExperienceRepository.GetAll(1, 6);
@@ -25,6 +25,6 @@ namespace Portfolio_API.Controllers
                 return StatusCode(200, res.ToArray());
             else
                 return NotFound();
-        }
+        }*/
     }
 }

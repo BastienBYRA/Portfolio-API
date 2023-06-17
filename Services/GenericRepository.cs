@@ -38,17 +38,29 @@ namespace Portfolio_API.Services
             await _context.AddRangeAsync(entities);
         }
 
-        public virtual IEnumerable<T> GetAll(int? page, int? numberPerPage)
+        public virtual void Entry_Modified(T entity)
+        {
+            _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public virtual async Task<List<T>> GetAll(int? page, int? numberPerPage)
         {
             int numberPage = (page ?? 1);
             int numberShowPerPage = (numberPerPage ?? 5);
 
-            return Table.ToList().Skip((numberPage - 1) * numberShowPerPage).Take(numberShowPerPage);
+            try
+            {
+                return await Table.Skip((numberPage - 1) * numberShowPerPage).Take(numberShowPerPage).ToListAsync();
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
 
-        public virtual T GetById(object id)
+        public virtual async ValueTask<T> GetById(object id)
         {
-            return Table.Find(id);
+            return await Table.FindAsync(id);
         }
 
         public virtual void Remove(T entity)

@@ -3,12 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Portfolio_API.Models
 {
-    public class Stack
+    public class Category_Language
     {
         [Key]
         public int Id { get; set; }
-        public string Category { get; set; } = null!;
-
+        public string Name { get; set; } = null!;
         public virtual ICollection<Langage> Langages { get; set; }
 
     }

@@ -1,4 +1,6 @@
-﻿using Portfolio_API.Services.Experience;
+﻿using Portfolio_API.Models;
+using Portfolio_API.Services.Category_Language;
+using Portfolio_API.Services.Experience;
 using Portfolio_API.Services.Langage;
 using System;
 using System.Threading.Tasks;
@@ -8,8 +10,9 @@ namespace Portfolio_API.Services
     public interface IUnitOfWork : IDisposable
     {
         #region Liste des Repositories
-        public ExperienceRepository ExperienceRepository { get; set; }
-        public LangageRepository LangageRepository { get; set; }
+        ExperienceRepository ExperienceRepository { get; }
+        LangageRepository LangageRepository { get; }
+        Category_LanguageRepository Category_LanguageRepository { get; }
         #endregion
 
         /// <summary>

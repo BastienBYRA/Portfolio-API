@@ -1,6 +1,8 @@
 ﻿using Portfolio_API.Data;
+using Portfolio_API.Models;
 using Portfolio_API.Services.Experience;
 using Portfolio_API.Services.Langage;
+using Portfolio_API.Services.Category_Language;
 
 namespace Portfolio_API.Services
 {
@@ -11,6 +13,7 @@ namespace Portfolio_API.Services
         #region Liste des Repositories
         public ExperienceRepository ExperienceRepository { get; set; }
         public LangageRepository LangageRepository { get; set; }
+        public Category_LanguageRepository Category_LanguageRepository { get; set; }
         #endregion
 
         public UnitOfWork(AppDbContext context)
@@ -18,6 +21,7 @@ namespace Portfolio_API.Services
             _context = context;
             ExperienceRepository = new ExperienceRepository(context);
             LangageRepository = new LangageRepository(context);
+            Category_LanguageRepository = new Category_LanguageRepository(context);
         }
 
         public int Save()

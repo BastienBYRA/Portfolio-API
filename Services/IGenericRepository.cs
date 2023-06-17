@@ -12,17 +12,14 @@ namespace Portfolio_API.Services
         /// Récupère tout les éléments de la base de données pour une classe donnée.
         /// </summary>
         /// <returns>Retourne une List de la classe donnée.</returns>
-        IEnumerable<TEntity> GetAll(int? page, int? numberPerPage);
+        Task<List<TEntity>> GetAll(int? page, int? numberPerPage);
 
         /// <summary>
         /// Récupère un élément de la base de données pour une classe donnée.
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Retourne un objet de la classe donnée.</returns>
-        TEntity GetById(object id);
-
-
-
+        ValueTask<TEntity> GetById(object id);
 
         /// <summary>
         /// Ajoute un élément dans la liste des éléments à enregistrer dans la base de données
@@ -48,10 +45,6 @@ namespace Portfolio_API.Services
         /// <param name="entity"></param>
         void AddRangeAsync(IEnumerable<TEntity> entities);
 
-
-
-
-
         /// <summary>
         /// Ajoute un élément dans la liste des éléments à supprimer dans la base de données
         /// </summary>
@@ -64,12 +57,10 @@ namespace Portfolio_API.Services
         /// <param name="entity"></param>
         void RemoveRange(IEnumerable<TEntity> entities);
 
-
-
-
-
         void Update(TEntity entity);
 
         void UpdateRange(IEnumerable<TEntity> entities);
+
+        void Entry_Modified(TEntity entity);
     }
 }

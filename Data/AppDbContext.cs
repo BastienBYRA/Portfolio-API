@@ -17,6 +17,7 @@ namespace Portfolio_API.Data
         public DbSet<Period> Periods { get; set; }
         public DbSet<Langage> Langages { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Category_Language> Category_Languages { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
