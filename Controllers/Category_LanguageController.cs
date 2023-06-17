@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -28,10 +29,8 @@ namespace Portfolio_API.Controllers
         {
             var results = await _unitOfWork.Category_LanguageRepository.GetAll(page, 10);
 
-            if (!results.Any())
-            {
-                return NotFound();
-            }
+            if (!results.Any()) return NotFound();
+
             return Ok(results);
         }
 
@@ -39,17 +38,16 @@ namespace Portfolio_API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Category_Language>> GetCategory_Language(int id)
         {
-            var result = _unitOfWork.Category_LanguageRepository.GetById(id);
+            var result = await _unitOfWork.Category_LanguageRepository.GetById(id);
 
-            if (result == default)
-            {
-                return NotFound();
-            }
-            return Ok(result.Result);
+            if (result == null) return NotFound();
+
+            return Ok(result);
         }
 
         // PUT: api/Category_Language/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPut("{id}/edit")]
         public async Task<IActionResult> PutCategory_Language(int id, Category_Language category_Language)
         {
@@ -66,13 +64,13 @@ namespace Portfolio_API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (await _unitOfWork.Category_LanguageRepository.GetById(id) == default)
+                if (await _unitOfWork.Category_LanguageRepository.GetById(id) == null)
                 {
                     return NotFound();
                 }
                 else
                 {
-                    throw;
+                    return StatusCode(409, "Erreur de mise à jour des données.");
                 }
             }
 
@@ -81,10 +79,10 @@ namespace Portfolio_API.Controllers
 
         // POST: api/Category_Language
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost("add")]
         public async Task<ActionResult<Category_Language>> PostCategory_Language(Category_Language category_Language)
         {
-
             _unitOfWork.Category_LanguageRepository.AddAsync(category_Language);
 
             try
@@ -100,10 +98,10 @@ namespace Portfolio_API.Controllers
         }
 
         // DELETE: api/Category_Language/5
+        [Authorize]
         [HttpDelete("{id}/delete")]
         public async Task<IActionResult> DeleteCategory_Language(int id)
         {
-
             var result = _unitOfWork.Category_LanguageRepository.GetById(id);
 
             if (result == default) return NotFound();

@@ -19,7 +19,7 @@ namespace Portfolio_API.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Retourne un objet de la classe donnée.</returns>
-        ValueTask<TEntity> GetById(object id);
+        Task<TEntity> GetById(object id);
 
         /// <summary>
         /// Ajoute un élément dans la liste des éléments à enregistrer dans la base de données

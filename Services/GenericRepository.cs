@@ -58,7 +58,7 @@ namespace Portfolio_API.Services
             }
         }
 
-        public virtual async ValueTask<T> GetById(object id)
+        public virtual async Task<T> GetById(object id)
         {
             return await Table.FindAsync(id);
         }
