@@ -1,34 +1,35 @@
 # Portfolio API
 
-Portfolio API est un projet .NET 6 utilisant une base de donnÈes SQL SERVER permettant de rÈcupÈrer des donnÈes.
+Portfolio API est un projet .NET 6 utilisant une base de donn√©es SQL SERVER permettant de r√©cup√©rer des donn√©es.
 
 ![API](https://github.com/BastienBYRA/Portfolio-API/blob/master/Document/SHOWCASE_SCREENS/API-SWAGGER.JPG)
 
-## DÈmarrer le projet
+## D√©marrer le projet
 
-### PrÈrequis
-- Installer C# et .NET (https://visualstudio.microsoft.com/fr/downloads/)
-- Installer SQL Server (https://www.microsoft.com/fr-fr/sql-server/sql-server-downloads)
-- Installer Git (https://git-scm.com/downloads)
+### Pr√©requis
+- Installez C# et .NET (https://visualstudio.microsoft.com/fr/downloads/)
+- Installez SQL Server (https://www.microsoft.com/fr-fr/sql-server/sql-server-downloads)
+- Installez Git (https://git-scm.com/downloads)
 
 ### Lancer le projet
-Une fois que vous etes dans le rÈpertoire du projet
-- Installer les package nÈcÈssaire au projet avec la ```commande dotnet restore```.
-- Changer dans le fichier **appsettings.json** la valeur de "DefaultConnection" pour mettre la connexion vers votre base de donnÈes.
-- CrÈer la base de donnÈes en utilisant la commande ```dotnet ef database update```.
-- Dans le dossier **Document/SQL_REQUEST_GLOBAL/** se trouve le fichier **INSERT_SQL_TABLE_DATA**, copier-coller le contenu du fichier votre base de donnÈes.
-	- Avec Microsoft SQL Management, cliquer sur "Bases de donnÈes" > "Portfolio", puis en haut ‡ gauche, sur le bouton "Nouvelle requÍte", copier-coller le contenu du fichier et cliquer sur "Executer".
+Une fois que vous √™tes dans le r√©pertoire du projet :
+- Installez les packages n√©cessaires au projet en utilisant la commande ```dotnet restore```.
+- Modifiez la valeur de la cl√© "DefaultConnection" dans le fichier **appsettings.json** pour qu'elle corresponde √† la connexion de votre base de donn√©es.
+- Cr√©ez la base de donn√©es en utilisant la commande ```dotnet ef database update```.
+- Dans le dossier **Document/SQL_REQUEST_GLOBAL/**, vous trouverez le fichier INSERT_SQL_TABLE_DATA. Copiez-collez le contenu de ce fichier dans votre base de donn√©es.
+	- Avec Microsoft SQL Management, cliquez sur "Bases de donn√©es" > "Portfolio", puis en haut √† gauche, cliquez sur le bouton "Nouvelle requ√™te". Collez ensuite le contenu du fichier et cliquez sur "Ex√©cuter".
 
-Vous pouvez maintenant dÈmarrer le projet
-- Si vous utiliser l'IDE Visual Studio, cliquer sur le bouton avec le triangle vert qui pointe vers la droite a cotÈ duquel est Ècrit "Portfolio_API"
-- Autrement, vous pouvez lancer le projet avec ```dotnet run```
+Vous pouvez maintenant d√©marrer le projet
+- Si vous utilisez l'IDE Visual Studio, cliquez sur le bouton en forme de triangle vert √† c√¥t√© de l'inscription "Portfolio_API".
+- Sinon, vous pouvez lancer le projet en utilisant la commande ```dotnet run```.
 
-Vous pourrez alors accÈder au projet ‡ cette URL : https://localhost:7206/swagger/index.html
+Vous pourrez ensuite acc√©der au projet via l'URL suivante : https://localhost:7206/swagger/index.html
 
 ### Taches
 - [x] - UnitOfWork et Repositories
 - [x] - EF Core
 - [x] - Caching
 - [x] - Rate Limit
+- [ ] - Conteneuriser le projet avec Docker
 - [ ] - Deploiement sur un Cloud Provider
 - [ ] - MAJ du Front pour utiliser l'API
