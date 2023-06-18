@@ -5,6 +5,7 @@ using Portfolio_API.Services.Langage;
 using Portfolio_API.Services.Mission;
 using Portfolio_API.Services.Period;
 using Portfolio_API.Services.Project;
+using Portfolio_API.Services.Type_Experience;
 using System;
 using System.Threading.Tasks;
 
@@ -19,6 +20,7 @@ namespace Portfolio_API.Services
         MissionRepository MissionRepository { get; }
         PeriodRepository PeriodRepository { get; }
         ProjectRepository ProjectRepository { get; }
+        Type_ExperienceRepository Type_ExperienceRepository { get; }
         #endregion
 
         /// <summary>
