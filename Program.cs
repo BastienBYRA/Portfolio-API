@@ -2,12 +2,15 @@
 using Portfolio_API.Data;
 using Portfolio_API.Services;
 using Portfolio_API.Controllers;
+using AspNetCoreRateLimit;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 
+//Database
 builder.Services.AddDbContext<AppDbContext>(
     options =>
     {
@@ -15,7 +18,16 @@ builder.Services.AddDbContext<AppDbContext>(
     }
 );
 
+//Unit of Work / Repository
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+//Rate limiting
+builder.Services.AddOptions();
+builder.Services.AddMemoryCache();
+builder.Services.Configure<IpRateLimitOptions>(builder.Configuration.GetSection("IpRateLimiting"));
+builder.Services.Configure<IpRateLimitPolicies>(builder.Configuration.GetSection("IpRateLimitPolicies"));
+builder.Services.AddInMemoryRateLimiting();
+builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -35,5 +47,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseIpRateLimiting();
 
 app.Run();
