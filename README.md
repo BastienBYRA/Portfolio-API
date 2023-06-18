@@ -2,6 +2,8 @@
 
 Portfolio API est un projet .NET 6 utilisant une base de données SQL SERVER permettant de récupérer des données.
 
+![API](https://github.com/BastienBYRA/Portfolio-API/blob/master/Document/SHOWCASE_SCREENS/API-SWAGGER.JPG)
+
 ## Démarrer le projet
 
 ### Prérequis
