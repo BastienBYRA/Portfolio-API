@@ -2,6 +2,7 @@
 using Portfolio_API.Services.Category_Language;
 using Portfolio_API.Services.Experience;
 using Portfolio_API.Services.Langage;
+using Portfolio_API.Services.Mission;
 using System;
 using System.Threading.Tasks;
 
@@ -13,6 +14,7 @@ namespace Portfolio_API.Services
         ExperienceRepository ExperienceRepository { get; }
         LangageRepository LangageRepository { get; }
         Category_LanguageRepository Category_LanguageRepository { get; }
+        MissionRepository MissionRepository { get; }
         #endregion
 
         /// <summary>

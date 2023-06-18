@@ -3,6 +3,7 @@ using Portfolio_API.Models;
 using Portfolio_API.Services.Experience;
 using Portfolio_API.Services.Langage;
 using Portfolio_API.Services.Category_Language;
+using Portfolio_API.Services.Mission;
 
 namespace Portfolio_API.Services
 {
@@ -14,6 +15,7 @@ namespace Portfolio_API.Services
         public ExperienceRepository ExperienceRepository { get; set; }
         public LangageRepository LangageRepository { get; set; }
         public Category_LanguageRepository Category_LanguageRepository { get; set; }
+        public MissionRepository MissionRepository { get; set; }
         #endregion
 
         public UnitOfWork(AppDbContext context)
@@ -22,6 +24,7 @@ namespace Portfolio_API.Services
             ExperienceRepository = new ExperienceRepository(context);
             LangageRepository = new LangageRepository(context);
             Category_LanguageRepository = new Category_LanguageRepository(context);
+            MissionRepository = new MissionRepository(context);
         }
 
         public int Save()

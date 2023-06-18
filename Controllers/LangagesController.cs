@@ -94,7 +94,7 @@ namespace Portfolio_API.Controllers
                 return StatusCode(304, "Echec de la mise à jour des données.");
             }
 
-            return CreatedAtAction("GetCategory_Language", new { id = langage.Id }, langage);
+            return CreatedAtAction("GetLangage", new { id = langage.Id }, langage);
         }
 
         // DELETE: api/Langages/5

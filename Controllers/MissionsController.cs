@@ -14,49 +14,49 @@ namespace Portfolio_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExperiencesController : ControllerBase
+    public class MissionsController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public ExperiencesController(IUnitOfWork unitOfWork)
+        public MissionsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/Experiences
+        // GET: api/Missions
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Experience>>> GetExperiences(int? page)
+        public async Task<ActionResult<IEnumerable<Mission>>> GetMissions(int? page)
         {
-            List<Experience> experiences = await _unitOfWork.ExperienceRepository.GetAll(page, 10);
+            List<Mission> missions = await _unitOfWork.MissionRepository.GetAll(page, 10);
 
-            if (!experiences.Any()) return NotFound();
+            if (!missions.Any()) return NotFound();
 
-            return Ok(experiences);
+            return Ok(missions);
         }
 
-        // GET: api/Experiences/5
+        // GET: api/Missions/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Experience>> GetExperience(int id)
+        public async Task<ActionResult<Mission>> GetMission(int id)
         {
-            Experience experience = await _unitOfWork.ExperienceRepository.GetById(id);
+            Mission mission = await _unitOfWork.MissionRepository.GetById(id);
 
-            if (experience == null) return NotFound();
+            if (mission == null) return NotFound();
 
-            return Ok(experience);
+            return Ok(mission);
         }
 
-        // PUT: api/Experiences/5
+        // PUT: api/Missions/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [Authorize]
         [HttpPut("{id}/edit")]
-        public async Task<IActionResult> PutExperience(int id, Experience experience)
+        public async Task<IActionResult> PutMission(int id, Mission mission)
         {
-            if (id != experience.Id)
+            if (id != mission.Id)
             {
                 return BadRequest();
             }
 
-            _unitOfWork.ExperienceRepository.Entry_Modified(experience);
+            _unitOfWork.MissionRepository.Entry_Modified(mission);
 
             try
             {
@@ -64,7 +64,7 @@ namespace Portfolio_API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (await _unitOfWork.ExperienceRepository.GetById(id) == null)
+                if (await _unitOfWork.MissionRepository.GetById(id) == null)
                 {
                     return NotFound();
                 }
@@ -77,13 +77,13 @@ namespace Portfolio_API.Controllers
             return NoContent();
         }
 
-        // POST: api/Experiences
+        // POST: api/Missions
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [Authorize]
         [HttpPost("add")]
-        public async Task<ActionResult<Experience>> PostExperience(Experience experience)
+        public async Task<ActionResult<Mission>> PostMission(Mission mission)
         {
-            _unitOfWork.ExperienceRepository.AddAsync(experience);
+            _unitOfWork.MissionRepository.AddAsync(mission);
 
             try
             {
@@ -94,19 +94,19 @@ namespace Portfolio_API.Controllers
                 return StatusCode(304, "Echec de la mise à jour des données.");
             }
 
-            return CreatedAtAction("GetExperience", new { id = experience.Id }, experience);
+            return CreatedAtAction("GetMission", new { id = mission.Id }, mission);
         }
 
-        // DELETE: api/Experiences/5
+        // DELETE: api/Missions/5
         [Authorize]
         [HttpDelete("{id}/delete")]
-        public async Task<IActionResult> DeleteExperience(int id)
+        public async Task<IActionResult> DeleteMission(int id)
         {
-            Experience experience = await _unitOfWork.ExperienceRepository.GetById(id);
+            Mission mission = await _unitOfWork.MissionRepository.GetById(id);
 
-            if (experience == null) return NotFound();
+            if (mission == null) return NotFound();
 
-            _unitOfWork.ExperienceRepository.Remove(experience);
+            _unitOfWork.MissionRepository.Remove(mission);
 
             try
             {
