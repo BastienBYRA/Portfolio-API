@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -15,46 +14,46 @@ namespace Portfolio_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PeriodsController : ControllerBase
+    public class ProjectsController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public PeriodsController(IUnitOfWork unitOfWork)
+        public ProjectsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/Periods
+        // GET: api/Projects
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Period>>> GetPeriods(int? page)
+        public async Task<ActionResult<IEnumerable<Project>>> GetProjects(int? page)
         {
-            List<Period> periods = await _unitOfWork.PeriodRepository.GetAll(page, 5);
+            List<Project> projects = await _unitOfWork.ProjectRepository.GetAll(page, 6);
 
-            if (!periods.Any()) return NotFound();
+            if (!projects.Any()) return NotFound();
 
-            return Ok(periods);
+            return Ok(projects);
         }
 
-        // GET: api/Periods/5
+        // GET: api/Projects/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Period>> GetPeriod(int id)
+        public async Task<ActionResult<Project>> GetProject(int id)
         {
-            Period period = await _unitOfWork.PeriodRepository.GetById(id);
+            Project project = await _unitOfWork.ProjectRepository.GetById(id);
 
-            if (period == null) return NotFound();
+            if (project == null) return NotFound();
 
-            return Ok(period);
+            return Ok(project);
         }
 
-        // PUT: api/Periods/5
+        // PUT: api/Projects/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [Authorize]
         [HttpPut("{id}/edit")]
-        public async Task<IActionResult> PutPeriod(int id, Period period)
+        public async Task<IActionResult> PutProject(int id, Project project)
         {
-            if (id != period.Id) return BadRequest();
+            if (id != project.Id) return BadRequest();
 
-            _unitOfWork.PeriodRepository.Entry_Modified(period);
+            _unitOfWork.ProjectRepository.Entry_Modified(project);
 
             try
             {
@@ -62,7 +61,7 @@ namespace Portfolio_API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (await _unitOfWork.ProjectRepository.GetById(id) == null)
+                if (await _unitOfWork.ProjectRepository.GetById(project) == null)
                     return NotFound();
 
                 else
@@ -72,13 +71,13 @@ namespace Portfolio_API.Controllers
             return NoContent();
         }
 
-        // POST: api/Periods
+        // POST: api/Projects
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [Authorize]
         [HttpPost("add")]
-        public async Task<ActionResult<Period>> PostPeriod(Period period)
+        public async Task<ActionResult<Project>> PostProject(Project project)
         {
-            _unitOfWork.PeriodRepository.AddAsync(period);
+            _unitOfWork.ProjectRepository.AddAsync(project);
 
             try
             {
@@ -89,19 +88,19 @@ namespace Portfolio_API.Controllers
                 return StatusCode(304, "Echec de la mise à jour des données.");
             }
 
-            return CreatedAtAction("GetPeriod", new { id = period.Id }, period);
+            return CreatedAtAction("GetProject", new { id = project.Id }, project);
         }
 
-        // DELETE: api/Periods/5
+        // DELETE: api/Projects/5
         [Authorize]
         [HttpDelete("{id}/delete")]
-        public async Task<IActionResult> DeletePeriod(int id)
+        public async Task<IActionResult> DeleteProject(int id)
         {
-            Period period = await _unitOfWork.PeriodRepository.GetById(id);
+            Project project = await _unitOfWork.ProjectRepository.GetById(id);
 
-            if (period == null) return NotFound();
+            if (project == null) return NotFound();
 
-            _unitOfWork.PeriodRepository.Remove(period);
+            _unitOfWork.ProjectRepository.Remove(project);
 
             try
             {
