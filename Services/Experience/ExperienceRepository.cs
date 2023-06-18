@@ -1,4 +1,5 @@
-﻿using Portfolio_API.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Portfolio_API.Data;
 using Portfolio_API.Models;
 
 namespace Portfolio_API.Services.Experience
@@ -9,14 +10,19 @@ namespace Portfolio_API.Services.Experience
         {
         }
 
-/*        public override async Task<List<Models.Experience>> GetAll(int? page, int? numberPerPage)
+        public override async Task<List<Models.Experience>> GetAll(int? page, int? numberPerPage)
         {
             int numberPage = (page ?? 1);
             int numberShowPerPage = (numberPerPage ?? 5);
 
             try
             {
-                return await _context.Experiences.Include(x => x.Langages).Skip((numberPage - 1) * numberShowPerPage).Take(numberShowPerPage).ToListAsync();
+                return await _context.Experiences
+                    .Include(x => x.Missions)
+                    .Include(x => x.Period)
+                    .Include(x => x.Type_Experience)
+                    .Skip((numberPage - 1) * numberShowPerPage).Take(numberShowPerPage)
+                    .ToListAsync();
             }
             catch (Exception)
             {
@@ -26,7 +32,7 @@ namespace Portfolio_API.Services.Experience
 
         public override async Task<Models.Experience> GetById(object id)
         {
-            return await _context.Category_Languages.Include(x => x.Langages).Where(x => x.Id == (int)id).FirstOrDefaultAsync();
-        }*/
+            return await _context.Experiences.Include(x => x.Missions).Include(x => x.Period).Include(x => x.Type_Experience).Where(x => x.Id == (int)id).FirstOrDefaultAsync();
+        }
     }
 }

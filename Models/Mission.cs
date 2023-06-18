@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace Portfolio_API.Models
 {
@@ -10,8 +11,10 @@ namespace Portfolio_API.Models
         [Required]
         public string Title { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Project> Projects { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Experience> Experience { get; set; }
     }
 }
