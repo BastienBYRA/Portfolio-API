@@ -14,6 +14,7 @@ namespace Portfolio_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ResponseCache(Duration = 30)]
     public class ExperiencesController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

@@ -14,6 +14,7 @@ namespace Portfolio_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ResponseCache(Duration = 60)]
     public class Category_LanguageController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

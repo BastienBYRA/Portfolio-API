@@ -21,6 +21,9 @@ builder.Services.AddDbContext<AppDbContext>(
 //Unit of Work / Repository
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
+//Caching
+builder.Services.AddResponseCaching();
+
 //Rate limiting
 builder.Services.AddOptions();
 builder.Services.AddMemoryCache();
@@ -48,6 +51,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseResponseCaching();
 app.UseIpRateLimiting();
 
 app.Run();
