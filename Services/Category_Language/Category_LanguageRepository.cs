@@ -21,10 +21,15 @@ namespace Portfolio_API.Services.Category_Language
             {
                 return await _context.Category_Languages.Include(x => x.Langages).Skip((numberPage - 1) * numberShowPerPage).Take(numberShowPerPage).ToListAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
+        }
+
+        public override async Task<Models.Category_Language> GetById(object id)
+        {
+            return await _context.Category_Languages.Include(x => x.Langages).Where(x => x.Id == (int)id).FirstOrDefaultAsync();
         }
     }
 }

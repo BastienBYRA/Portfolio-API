@@ -14,49 +14,49 @@ namespace Portfolio_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LangagesController : ControllerBase
+    public class ExperiencesController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public LangagesController(IUnitOfWork unitOfWork)
+        public ExperiencesController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/Langages
+        // GET: api/Experiences
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Langage>>> GetLangages(int? page)
+        public async Task<ActionResult<IEnumerable<Experience>>> GetExperiences(int? page)
         {
-            List<Langage> langages = await _unitOfWork.LangageRepository.GetAll(page, 10);
+            List<Experience> experiences = await _unitOfWork.ExperienceRepository.GetAll(page, 10);
 
-            if (!langages.Any()) return NotFound();
+            if (!experiences.Any()) return NotFound();
 
-            return Ok(langages);
+            return Ok(experiences);
         }
 
-        // GET: api/Langages/5
+        // GET: api/Experiences/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Langage>> GetLangage(int id)
+        public async Task<ActionResult<Experience>> GetExperience(int id)
         {
-            Langage langage = await _unitOfWork.LangageRepository.GetById(id);
+            Experience experience = await _unitOfWork.ExperienceRepository.GetById(id);
 
-            if (langage == null) return NotFound();
+            if (experience == null) return NotFound();
 
-            return Ok(langage);
+            return Ok(experience);
         }
 
-        // PUT: api/Langages/5
+        // PUT: api/Experiences/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [Authorize]
         [HttpPut("{id}/edit")]
-        public async Task<IActionResult> PutLangage(int id, Langage langage)
+        public async Task<IActionResult> PutExperience(int id, Experience experience)
         {
-            if (id != langage.Id)
+            if (id != experience.Id)
             {
                 return BadRequest();
             }
 
-            _unitOfWork.LangageRepository.Entry_Modified(langage);
+            _unitOfWork.ExperienceRepository.Entry_Modified(experience);
 
             try
             {
@@ -64,7 +64,7 @@ namespace Portfolio_API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (await _unitOfWork.LangageRepository.GetById(id) == null)
+                if (await _unitOfWork.ExperienceRepository.GetById(id) == null)
                 {
                     return NotFound();
                 }
@@ -77,13 +77,13 @@ namespace Portfolio_API.Controllers
             return NoContent();
         }
 
-        // POST: api/Langages
+        // POST: api/Experiences
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [Authorize]
         [HttpPost("add")]
-        public async Task<ActionResult<Langage>> PostLangage(Langage langage)
+        public async Task<ActionResult<Experience>> PostExperience(Experience experience)
         {
-            _unitOfWork.LangageRepository.AddAsync(langage);
+            _unitOfWork.ExperienceRepository.AddAsync(experience);
 
             try
             {
@@ -94,19 +94,19 @@ namespace Portfolio_API.Controllers
                 return StatusCode(304, "Echec de la mise à jour des données.");
             }
 
-            return CreatedAtAction("GetCategory_Language", new { id = langage.Id }, langage);
+            return CreatedAtAction("GetCategory_Language", new { id = experience.Id }, experience);
         }
 
-        // DELETE: api/Langages/5
+        // DELETE: api/Experiences/5
         [Authorize]
         [HttpDelete("{id}/delete")]
-        public async Task<IActionResult> DeleteLangage(int id)
+        public async Task<IActionResult> DeleteExperience(int id)
         {
-            Langage langage = await _unitOfWork.LangageRepository.GetById(id);
+            Experience experience = await _unitOfWork.ExperienceRepository.GetById(id);
 
-            if (langage == null) return NotFound();
+            if (experience == null) return NotFound();
 
-            _unitOfWork.LangageRepository.Remove(langage);
+            _unitOfWork.ExperienceRepository.Remove(experience);
 
             try
             {

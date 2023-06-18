@@ -27,22 +27,22 @@ namespace Portfolio_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category_Language>>> GetCategory_Languages(int? page)
         {
-            var results = await _unitOfWork.Category_LanguageRepository.GetAll(page, 10);
+            List<Category_Language> category_Languages = await _unitOfWork.Category_LanguageRepository.GetAll(page, 10);
 
-            if (!results.Any()) return NotFound();
+            if (!category_Languages.Any()) return NotFound();
 
-            return Ok(results);
+            return Ok(category_Languages);
         }
 
         // GET: api/Category_Language/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Category_Language>> GetCategory_Language(int id)
         {
-            var result = await _unitOfWork.Category_LanguageRepository.GetById(id);
+            Category_Language category_Language = await _unitOfWork.Category_LanguageRepository.GetById(id);
 
-            if (result == null) return NotFound();
+            if (category_Language == null) return NotFound();
 
-            return Ok(result);
+            return Ok(category_Language);
         }
 
         // PUT: api/Category_Language/5
@@ -89,7 +89,7 @@ namespace Portfolio_API.Controllers
             {
                 await _unitOfWork.SaveAsync();
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return StatusCode(304, "Echec de la mise à jour des données.");
             }
@@ -102,17 +102,17 @@ namespace Portfolio_API.Controllers
         [HttpDelete("{id}/delete")]
         public async Task<IActionResult> DeleteCategory_Language(int id)
         {
-            var result = _unitOfWork.Category_LanguageRepository.GetById(id);
+            Category_Language category_Language = await _unitOfWork.Category_LanguageRepository.GetById(id);
 
-            if (result == default) return NotFound();
+            if (category_Language == null) return NotFound();
 
-            _unitOfWork.Category_LanguageRepository.Remove(result.Result);
+            _unitOfWork.Category_LanguageRepository.Remove(category_Language);
 
             try
             {
                 await _unitOfWork.SaveAsync();
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return StatusCode(304, "Echec de la suppression des données.");
             }
